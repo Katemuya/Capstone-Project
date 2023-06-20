@@ -1,11 +1,14 @@
 import Heading from "../components/Heading";
-import SubHeading from "../components/SubHeading";
+// import SubHeading from "../components/SubHeading";
+import Calendar from "../components/Calendar";
+import events from "../lib/db";
 
 export default function Home() {
   return (
     <main>
-      <Heading>🐬 Capstone Template 🐬</Heading>
-      <SubHeading>We dolphinitely love coding!</SubHeading>
+      <Heading>My Calendar</Heading>
+      {/* <SubHeading></SubHeading> */}
+      <Calendar events={events} />
     </main>
   );
 }
