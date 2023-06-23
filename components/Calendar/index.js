@@ -7,6 +7,7 @@ import addHours from "date-fns/addHours";
 import startOfDay from "date-fns/startOfDay";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import styled from "styled-components";
+import Link from "next/link";
 
 const locales = {
   "de-AT": require("date-fns/locale/de-AT"),
@@ -30,11 +31,14 @@ const StyledMyCalendar = styled(MyCalendar)`
 
 export default function Calendar({ events }) {
   return (
-    <StyledMyCalendar
-      localizer={localizer}
-      events={events}
-      startAccessor="start"
-      endAccessor="end"
-    />
+    <div>
+      <StyledMyCalendar
+        localizer={localizer}
+        events={events}
+        startAccessor="start"
+        endAccessor="end"
+      />
+      <Link href="./Shifts">Shifts</Link>
+    </div>
   );
 }
