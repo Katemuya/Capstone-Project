@@ -20,7 +20,9 @@
     "react-big-calendar": "^1.8.1",
     "react-date-picker": "^10.2.0",
     "react-dom": "18.2.0",
-    "styled-components": "^5.3.8"
+    "react-hook-form": "^7.45.0",
+    "styled-components": "^5.3.8",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@svgr/webpack": "^6.5.1",
