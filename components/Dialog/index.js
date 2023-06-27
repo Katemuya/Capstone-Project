@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import EditShift from "../EditShift";
 
 const DialogWrapper = styled.div`
   position: absolute;
@@ -14,30 +15,39 @@ const DialogWrapper = styled.div`
 `;
 
 const DialogContent = styled.div`
-  background-color: grey;
-  padding: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #f9f9f9;
+  position: relative;
   border-radius: 10px;
   padding: 30px;
-  display: flex;
-  align-items: start;
   position: relative;
+  margin: 0 auto;
 `;
+
 //Style the close button
 const CloseButton = styled.button`
-  background-color: white;
   border: none;
   position: absolute;
+  color: white;
   right: 0;
   top: 0;
-  margin: 10px;
-  padding: 5px 10px;
-  background-color: white;
+  transform: translateX(-50%);
+  margin: 0px;
+  padding: 5px 5px;
+  background-color: #464242;
   align-self: auto;
   font-weight: bold;
   cursor: pointer;
 `;
 
-export default function ShiftDialog({ onClose }) {
+export default function ShiftDialog({
+  shiftInfo,
+  onClose,
+  updateNewShiftsInfo,
+}) {
   //use the onClose prop to handle the closeButton
   const handleCloseButton = () => {
     onClose();
@@ -48,7 +58,12 @@ export default function ShiftDialog({ onClose }) {
       <DialogWrapper>
         <DialogContent>
           <CloseButton onClick={handleCloseButton}>Close</CloseButton>
-          <p>Very soon you will be able to edit your shift here</p>
+
+          <EditShift
+            currentShiftInfo={shiftInfo}
+            updateNewShiftsInfo={updateNewShiftsInfo}
+            closeDialog={onClose}
+          ></EditShift>
         </DialogContent>
       </DialogWrapper>
     </div>
