@@ -1,7 +1,7 @@
 import ShiftsOverview from "../../components/ShiftsOverview";
 import { useState } from "react";
 
-export default function Shifts({ shiftsInfo, setShiftsInfo }) {
+export default function Shifts() {
   //create an array to store the form data
   const [shiftFormData, addShiftFormData] = useState([]);
 
@@ -14,8 +14,6 @@ export default function Shifts({ shiftsInfo, setShiftsInfo }) {
       <ShiftsOverview
         addNewShiftInfo={addNewShiftInfo}
         shiftFormData={shiftFormData}
-        shiftsInfo={shiftsInfo}
-        setShiftsInfo={setShiftsInfo}
       />
     </>
   );
