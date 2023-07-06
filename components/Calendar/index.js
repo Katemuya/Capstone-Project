@@ -19,6 +19,7 @@ const localizer = momentLocalizer(moment);
 const StyledMyCalendar = styled(MyCalendar)`
   height: 500px;
   margin: 10px;
+  background-color: #c4dfdf;
 `;
 const EventDialogWrapper = styled.div`
   .rbc-calendar {
@@ -63,9 +64,8 @@ export default function Calendar({ events, setEvents }) {
         start: new Date(start),
         end: new Date(end),
       }));
-      console.log(newEvent);
     },
-    [setNewEvent, newEvent, setIsDialogOpen]
+    [setNewEvent, setIsDialogOpen]
   );
 
   const memoizedEvents = useMemo(
@@ -80,22 +80,16 @@ export default function Calendar({ events, setEvents }) {
 
   const handleSelectEvent = useCallback((savedEvents) => {
     const { title, start, end } = savedEvents;
-    const startFormatted = start.toLocaleString("en-US", {
+    const format = {
       weekday: "short",
       month: "short",
       day: "numeric",
       year: "numeric",
       hour: "numeric",
       minute: "numeric",
-    });
-    const endFormatted = end.toLocaleString("en-US", {
-      weekday: "short",
-      month: "short",
-      day: "numeric",
-      year: "numeric",
-      hour: "numeric",
-      minute: "numeric",
-    });
+    };
+    const startFormatted = start.toLocaleString("en-US", format);
+    const endFormatted = end.toLocaleString("en-US", format);
     const message = `Title: ${title}\nStart: ${startFormatted}\nEnd: ${endFormatted}`;
     window.alert(message);
   }, []);
