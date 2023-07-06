@@ -6,16 +6,6 @@ import initialEvents from "../lib/db";
 import { useMemo } from "react";
 
 export default function App({ Component, pageProps }) {
-  //Define useState for both the edit and close buttons
-
-  // const [shiftsInfo, setShiftsInfo] = useImmerLocalStorageState("shifts-info", {
-  //   defaultValue: initialShiftsInfo,
-  // });
-
-  // const [events, setEvents] = useImmerLocalStorageState("events", {
-  //   defaultValue: initialEvents,
-  // });
-
   const shiftsInfoMemoized = useMemo(
     () => ({
       defaultValue: initialShiftsInfo,
