@@ -70,7 +70,6 @@ export default function EventDialog({
           />
         </Label>
 
-        {/* The code below shall be used later */}
         <Label>
           Start:
           <Input
