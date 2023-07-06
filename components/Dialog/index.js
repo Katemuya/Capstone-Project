@@ -5,18 +5,15 @@ export default function ShiftDialog({
   shiftInfo,
   onClose,
   updateNewShiftsInfo,
+  deleteShift,
 }) {
-  //use the onClose prop to handle the closeButton
-  // const handleCloseButton = () => {
-  //   onClose();
-  // };
-
   return (
     <div>
       <MainDialog onClose={onClose}>
         <EditShift
           currentShiftInfo={shiftInfo}
           updateNewShiftsInfo={updateNewShiftsInfo}
+          deleteShift={deleteShift}
           closeDialog={onClose}
         ></EditShift>
       </MainDialog>

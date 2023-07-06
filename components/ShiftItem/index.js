@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import { useState } from "react";
-import ShiftDialog from "../Dialog";
+import { Button } from "../EditShift";
 
 const Container = styled.div`
   display: flex;
@@ -8,17 +7,11 @@ const Container = styled.div`
   align-items: center;
 `;
 
-const EditButton = styled.div`
+export const EditButton = styled(Button)`
   position: relative;
   right: 30px;
-  padding: 8px 16px;
   background-color: #2596be;
   color: #ffffff;
-  border: none;
-  border-radius: 4px;
-  font-size: 14px;
-  cursor: pointer;
-
   /* Hover effect */
   &:hover {
     background-color: #145369;
@@ -31,17 +24,11 @@ const StyledShiftItem = styled.div`
 `;
 
 export default function ShiftItem({
-  shiftInfo,
   title,
   time,
-  updateNewShiftsInfo,
+
+  onEdit,
 }) {
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
-
-  const handleToggleEdit = () => {
-    setIsDialogOpen(!isDialogOpen);
-  };
-
   return (
     <Container>
       <StyledShiftItem>
@@ -49,14 +36,7 @@ export default function ShiftItem({
         <p>{time}</p>
       </StyledShiftItem>
 
-      <EditButton onClick={handleToggleEdit}>Edit</EditButton>
-      {isDialogOpen && (
-        <ShiftDialog
-          shiftInfo={shiftInfo}
-          updateNewShiftsInfo={updateNewShiftsInfo}
-          onClose={() => setIsDialogOpen(false)}
-        />
-      )}
+      <EditButton onClick={onEdit}>Edit</EditButton>
     </Container>
   );
 }

@@ -1,10 +1,16 @@
 import { useState } from "react";
+import MainDialog from "../MainDialog";
 import styled from "styled-components";
 
 const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  gap: 5em;
 `;
 
 const Label = styled.label`
@@ -18,24 +24,25 @@ const Input = styled.input`
   border-radius: 3px;
 `;
 
-const SubmitButtonContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  gap: 5em;
-`;
-
-const SaveSubmitButton = styled.button`
+export const Button = styled.button`
   padding: 10px 20px;
-  background-color: #4caf50;
-  color: white;
+  color: #ffffff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  font-size: 14px;
 `;
 
+const DeleteButton = styled(Button)`
+  background-color: red;
+`;
+const SaveButton = styled(Button)`
+  background-color: #4caf50;
+`;
 export default function EditShift({
   currentShiftInfo,
   updateNewShiftsInfo,
+  deleteShift,
   closeDialog,
 }) {
   const [shiftInfo, setShiftInfo] = useState({
@@ -44,7 +51,6 @@ export default function EditShift({
     start: currentShiftInfo.start,
     end: currentShiftInfo.end,
   });
-
   const handleChange = (event) => {
     setShiftInfo({ ...shiftInfo, [event.target.name]: event.target.value });
   };
@@ -54,44 +60,53 @@ export default function EditShift({
     updateNewShiftsInfo(shiftInfo);
     closeDialog();
 
-    setShiftInfo({ name: "", start: "", end: "", id: "" });
+    setShiftInfo({ shiftName: "", start: "", end: "", id: "" });
+  };
+  const handleDelete = () => {
+    deleteShift(currentShiftInfo.id);
+    closeDialog();
   };
 
   return (
-    <StyledForm onSubmit={handleSubmit}>
-      <Label>
-        Shift Name:
-        <Input
-          type="text"
-          name="shiftName"
-          value={shiftInfo.shiftName}
-          onChange={handleChange}
-        />
-      </Label>
+    <MainDialog onClose={closeDialog}>
+      <StyledForm onSubmit={handleSubmit}>
+        <Label>
+          Shift Name:
+          <Input
+            type="text"
+            name="shiftName"
+            value={shiftInfo.shiftName}
+            onChange={handleChange}
+          />
+        </Label>
 
-      <Label>
-        Start:
-        <Input
-          type="time"
-          name="start"
-          placeholder="00:00"
-          value={shiftInfo.start}
-          onChange={handleChange}
-        />
-      </Label>
-      <Label>
-        End:
-        <Input
-          type="time"
-          name="end"
-          placeholder="00:00"
-          value={shiftInfo.end}
-          onChange={handleChange}
-        />
-      </Label>
-      <SubmitButtonContainer>
-        <SaveSubmitButton>Save </SaveSubmitButton>
-      </SubmitButtonContainer>
-    </StyledForm>
+        <Label>
+          Start:
+          <Input
+            type="time"
+            name="start"
+            placeholder="00:00"
+            value={shiftInfo.start}
+            onChange={handleChange}
+          />
+        </Label>
+
+        <Label>
+          End:
+          <Input
+            type="time"
+            name="end"
+            placeholder="00:00"
+            value={shiftInfo.end}
+            onChange={handleChange}
+          />
+        </Label>
+
+        <ButtonContainer>
+          <DeleteButton onClick={handleDelete}>Delete</DeleteButton>
+          <SaveButton>Save </SaveButton>
+        </ButtonContainer>
+      </StyledForm>
+    </MainDialog>
   );
 }
