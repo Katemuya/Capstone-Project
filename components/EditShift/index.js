@@ -1,6 +1,7 @@
 import { useState } from "react";
 import MainDialog from "../MainDialog";
 import styled from "styled-components";
+import ColorSlideChooser from "../ColorSlideChooser";
 
 const StyledForm = styled.form`
   display: flex;
@@ -33,7 +34,7 @@ export const Button = styled.button`
   font-size: 14px;
 `;
 
-const DeleteButton = styled(Button)`
+export const DeleteButton = styled(Button)`
   background-color: red;
 `;
 const SaveButton = styled(Button)`
@@ -50,9 +51,15 @@ export default function EditShift({
     shiftName: currentShiftInfo.shiftName,
     start: currentShiftInfo.start,
     end: currentShiftInfo.end,
+    color: currentShiftInfo.color,
   });
+
   const handleChange = (event) => {
     setShiftInfo({ ...shiftInfo, [event.target.name]: event.target.value });
+  };
+
+  const handleColorChange = (color) => {
+    setShiftInfo({ ...shiftInfo, color: color });
   };
 
   const handleSubmit = (event) => {
@@ -62,6 +69,7 @@ export default function EditShift({
 
     setShiftInfo({ shiftName: "", start: "", end: "", id: "" });
   };
+
   const handleDelete = () => {
     deleteShift(currentShiftInfo.id);
     closeDialog();
@@ -101,6 +109,10 @@ export default function EditShift({
             onChange={handleChange}
           />
         </Label>
+
+        <ColorSlideChooser
+          onColorChange={handleColorChange}
+        ></ColorSlideChooser>
 
         <ButtonContainer>
           <DeleteButton onClick={handleDelete}>Delete</DeleteButton>
