@@ -18,7 +18,7 @@ const DialogContent = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #f9f9f9;
+  background-color: #f7ecde;
   position: relative;
   border-radius: 10px;
   padding: 30px;

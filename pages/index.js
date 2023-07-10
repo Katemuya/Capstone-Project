@@ -1,11 +1,10 @@
-import Heading from "../components/Heading";
 // import SubHeading from "../components/SubHeading";
 import Calendar from "../components/Calendar";
+import NavigationBar from "../components/NavigationBar";
 
 export default function Home({ events, setEvents, shiftsInfo, setShiftsInfo }) {
   return (
     <main>
-      <Heading>My Calendar</Heading>
       {/* <SubHeading></SubHeading> */}
       <Calendar
         events={events}
@@ -13,6 +12,7 @@ export default function Home({ events, setEvents, shiftsInfo, setShiftsInfo }) {
         setShiftsInfo={setShiftsInfo}
         setEvents={setEvents}
       />
+      <NavigationBar />
     </main>
   );
 }
