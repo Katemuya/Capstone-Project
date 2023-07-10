@@ -6,6 +6,7 @@ export default function ShiftDialog({
   onClose,
   updateNewShiftsInfo,
   deleteShift,
+  handleColorChange,
 }) {
   return (
     <div>
@@ -15,6 +16,7 @@ export default function ShiftDialog({
           updateNewShiftsInfo={updateNewShiftsInfo}
           deleteShift={deleteShift}
           closeDialog={onClose}
+          handleColorChange={handleColorChange}
         ></EditShift>
       </MainDialog>
     </div>
