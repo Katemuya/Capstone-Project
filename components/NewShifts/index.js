@@ -102,7 +102,7 @@ export default function NewShifts({ handleAddShift, closeDialog }) {
             />
           </Label>
           <ButtonContainer>
-            <SaveButton>Add Shift </SaveButton>
+            <SaveButton type="submit">Add Shift </SaveButton>
           </ButtonContainer>
         </StyledForm>
       </MainDialog>

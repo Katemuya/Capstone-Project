@@ -41,15 +41,15 @@ const StyledTitle = styled.h4`
 const StyledTime = styled.p`
   margin: 0;
 `;
+const ColorButton = styled(Button)`
+  color: black;
+  padding: 5px 10px;
+  background-color: ${(props) => props.selectedColor};
+  width: 40px;
+  height: 40px;
+`;
 
 export default function ShiftItem({ title, time, onEdit, selectedColor }) {
-  const ColorButton = styled(Button)`
-    color: black;
-    padding: 5px 10px;
-    background-color: ${(props) => props.selectedColor};
-    width: 40px;
-    height: 40px;
-  `;
   return (
     <ContentContainer>
       <StyledShiftItem>
