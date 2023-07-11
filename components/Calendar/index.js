@@ -203,7 +203,7 @@ export default function Calendar({ events, setEvents, shiftsInfo }) {
           defaultView={Views.MONTH}
           eventPropGetter={(event, start, end, isSelected) => {
             let newStyle = {
-              backgroundColor: "#666666",
+              backgroundColor: "#1D5B79",
               color: "black",
               borderRadius: "3px",
               border: "none",
