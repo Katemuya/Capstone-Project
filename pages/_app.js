@@ -4,6 +4,8 @@ import { useImmerLocalStorageState } from "../lib/useImmerLocalSorageState";
 import initialShiftsInfo from "../lib/InitialShiftsInfo";
 import initialEvents from "../lib/db";
 import { useMemo } from "react";
+import useLocalStorageState from "use-local-storage-state";
+import { useState } from "react";
 
 export default function App({ Component, pageProps }) {
   const shiftsInfoMemoized = useMemo(
