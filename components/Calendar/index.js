@@ -1,21 +1,33 @@
-import { Calendar as MyCalendar, momentLocalizer } from "react-big-calendar";
+import { Calendar as MyCalendar, dateFnsLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import styled from "styled-components";
 import { useCallback, useMemo, useState } from "react";
 import { Views } from "react-big-calendar";
-import moment from "moment";
+
+import format from "date-fns/format";
+import parse from "date-fns/parse";
+import startOfWeek from "date-fns/startOfWeek";
+import getDay from "date-fns/getDay";
+
 import Heading from "../Heading";
 import EventDialog from "../EventDialog";
 import { CSSTransition } from "react-transition-group";
 import enUS from "date-fns/locale/en-US";
 import { Button } from "../EditShift";
 import DeleteEventDialogue from "../DeleteEventDialog";
+import SuccessToast from "../Toast";
 
 const locales = {
   "en-US": enUS,
 };
 
-const localizer = momentLocalizer(moment);
+const localizer = dateFnsLocalizer({
+  format,
+  parse,
+  startOfWeek,
+  getDay,
+  locales,
+});
 
 const StyledPage = styled.div`
   width: 100%;
@@ -89,6 +101,7 @@ export default function Calendar({ events, setEvents, shiftsInfo }) {
   const [shiftPaint, setShiftPaint] = useState(null);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
   const [showPaintRow, setShowPaintRow] = useState(false);
+  const [showToast, setShowToast] = useState(false);
 
   const addNewEvent = useCallback(() => {
     setEvents([...events, newEvent]);
@@ -126,16 +139,19 @@ export default function Calendar({ events, setEvents, shiftsInfo }) {
 
   const deleteEvent = () => {
     setIsDeleteDialogOpen(false);
-    const confirmed = window.confirm(
-      "Are you sure you want to delete this event?"
+    // const confirmed = window.confirm(
+    //   "Are you sure you want to delete this event?"
+    // );
+    // if (confirmed) {
+    const updatedEvents = events.filter(
+      (event) => event.id !== eventIDToBeDeleted
     );
-    if (confirmed) {
-      const updatedEvents = events.filter(
-        (event) => event.id !== eventIDToBeDeleted
-      );
-      setEvents(updatedEvents);
-      alert("shift deleted successfully");
-    }
+    setEvents(updatedEvents);
+    setShowToast(true);
+    setTimeout(() => {
+      setShowToast(false);
+    }, 1000);
+    // }
   };
 
   const onShiftSelected = useCallback((newShiftPaint) => {
@@ -194,7 +210,7 @@ export default function Calendar({ events, setEvents, shiftsInfo }) {
             };
 
             if (event.color != null) {
-              newStyle.backgroundColor = event.color;
+              (newStyle.backgroundColor = event.color), event.start, event.end;
             }
 
             return {
@@ -262,6 +278,7 @@ export default function Calendar({ events, setEvents, shiftsInfo }) {
           </CSSTransition>
         </Row>
       </EventDialogWrapper>
+      <SuccessToast show={showToast}></SuccessToast>
     </StyledPage>
   );
 }
