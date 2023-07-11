@@ -1,6 +1,5 @@
 import GlobalStyle from "../styles";
 import Head from "next/head";
-import { useImmerLocalStorageState } from "../lib/useImmerLocalSorageState";
 import initialShiftsInfo from "../lib/InitialShiftsInfo";
 import initialEvents from "../lib/db";
 import { useMemo } from "react";
@@ -22,15 +21,12 @@ export default function App({ Component, pageProps }) {
     []
   );
 
-  const [shiftsInfo, setShiftsInfo] = useImmerLocalStorageState(
+  const [shiftsInfo, setShiftsInfo] = useLocalStorageState(
     "shifts-info",
     shiftsInfoMemoized
   );
 
-  const [events, setEvents] = useImmerLocalStorageState(
-    "events",
-    eventsMemoized
-  );
+  const [events, setEvents] = useLocalStorageState("events", eventsMemoized);
   return (
     <>
       <GlobalStyle />
