@@ -6,6 +6,7 @@ import NewShifts from "../NewShifts";
 import { useState } from "react";
 import ShiftDialog from "../Dialog";
 import { Button } from "../EditShift";
+import SuccessToast from "../Toast";
 
 const StyledShifts = styled.div`
   left: 30%;
@@ -34,13 +35,13 @@ export default function ShiftsOverview({ shiftsInfo, setShiftsInfo }) {
   const [isShiftDialogOpen, setIsShiftDialogOpen] = useState(false);
   const [isNewShiftDialogOpen, setIsNewShiftDialogOpen] = useState(false);
   const [selectedShiftId, setSelectedShiftId] = useState(null);
-
+  const [showDeleteShiftToast, setShowDeleteShiftToast] = useState(false);
   //function to handle adding a new shift
   const handleAddShift = (newShift) => {
-    setShiftsInfo([...shiftsInfo, newShift]);
+    setShiftsInfo((prevShiftsInfo) => [...prevShiftsInfo, newShift]);
   };
-
-  //function to update new shifts
+  console.log(shiftsInfo);
+  //function to edit shifts
   const updateNewShiftsInfo = (updatedShiftInfo) => {
     setShiftsInfo(
       shiftsInfo.map((shiftInfo) => {
@@ -52,14 +53,17 @@ export default function ShiftsOverview({ shiftsInfo, setShiftsInfo }) {
   };
 
   const deleteShift = (shiftId) => {
-    const confirmed = window.confirm(
-      "Are you sure you want to delete this shift?"
-    );
-    if (confirmed) {
-      const updatedShifts = shiftsInfo.filter((shift) => shift.id !== shiftId);
-      setShiftsInfo(updatedShifts);
-      alert("shift deleted successfully");
-    }
+    // const confirmed = window.confirm(
+    //   "Are you sure you want to delete this shift?"
+    // );
+    // if (confirmed) {
+    const updatedShifts = shiftsInfo.filter((shift) => shift.id !== shiftId);
+    setShiftsInfo(updatedShifts);
+    setShowDeleteShiftToast(true);
+    setTimeout(() => {
+      setShowDeleteShiftToast(false);
+    }, 2000);
+    // }
   };
   return (
     <StyledContainer>
@@ -89,16 +93,16 @@ export default function ShiftsOverview({ shiftsInfo, setShiftsInfo }) {
                   }}
                 ></ShiftDialog>
               )}
-
-              {isNewShiftDialogOpen && (
-                <NewShifts
-                  handleAddShift={handleAddShift}
-                  closeDialog={() => setIsNewShiftDialogOpen(false)}
-                ></NewShifts>
-              )}
             </div>
           ))}
+        {isNewShiftDialogOpen && (
+          <NewShifts
+            handleAddShift={handleAddShift}
+            closeDialog={() => setIsNewShiftDialogOpen(false)}
+          ></NewShifts>
+        )}
       </StyledShifts>
+      <SuccessToast show={showDeleteShiftToast}></SuccessToast>
       <StyledCreateButton onClick={() => setIsNewShiftDialogOpen(true)}>
         Create Shift
       </StyledCreateButton>
