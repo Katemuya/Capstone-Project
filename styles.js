@@ -10,7 +10,18 @@ export default createGlobalStyle`
     margin: 0;
     font-family: system-ui;
   }
-
+  /* *:focus {
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+}
+*:active {
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+} */
 
 
   .paint-row-enter {

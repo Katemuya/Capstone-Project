@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const DialogWrapper = styled.div`
+export const DialogWrapper = styled.div`
   position: absolute;
   top: 0;
   left: 0;

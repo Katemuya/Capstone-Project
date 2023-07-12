@@ -32,7 +32,7 @@ const localizer = dateFnsLocalizer({
 const StyledPage = styled.div`
   width: 100%;
   height: 90vh;
-  overflow: scroll;
+
   background-color: #f0ebe3;
   padding: 20px;
 `;
@@ -66,7 +66,7 @@ const EventDialogWrapper = styled.div`
 
 const PaintRow = styled.div`
   display: flex;
-  overflow: scroll;
+  overflow: hidden;
   flex-wrap: nowrap;
   white-space: nowrap;
   flex-direction: row;
@@ -74,12 +74,12 @@ const PaintRow = styled.div`
 
 const StyledPaintButton = styled(Button)`
   background-color: #898121;
-  height: 50px;
-  font-size: px;
+  height: 40px;
 `;
 const PaintEvent = styled.div`
   background-color: ${(props) => props.color};
-  width: 50px;
+  width: 30px;
+  height: 30px;
   margin: 2px;
   aspect-ratio: 1;
   border-radius: 100%;
@@ -88,7 +88,7 @@ const PaintEvent = styled.div`
 
 const Row = styled.div`
   display: flex;
-  overflow: scroll;
+  overflow: hidden;
   flex-wrap: nowrap;
   white-space: nowrap;
   flex-direction: row;
@@ -248,7 +248,7 @@ export default function Calendar({ events, setEvents, shiftsInfo }) {
               });
             }}
           >
-            Paint
+            Shift
           </StyledPaintButton>
           <CSSTransition
             in={showPaintRow}

@@ -15,6 +15,7 @@ const StyledToastWrapper = styled.div`
   width: 50%;
   text-align: center;
   box-shadow: 0px 0px 20px #00000080;
+  color: white;
 `;
 const StyledToastContent = styled.div``;
 export default function SuccessToast({ show }) {

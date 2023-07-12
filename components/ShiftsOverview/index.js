@@ -18,7 +18,6 @@ const StyledContainer = styled.div`
   background-color: #e5e3c9;
   height: 90vh;
   width: 100%;
-  overflow: scroll;
 `;
 const StyledCreateButton = styled(Button)`
   background-color: #3e8e7e;
