@@ -1,3 +1,4 @@
+import NavigationBar from "../../components/NavigationBar";
 import ShiftsOverview from "../../components/ShiftsOverview";
 import { useState } from "react";
 
@@ -17,6 +18,7 @@ export default function Shifts({ shiftsInfo, setShiftsInfo }) {
         shiftsInfo={shiftsInfo}
         setShiftsInfo={setShiftsInfo}
       />
+      <NavigationBar />
     </>
   );
 }

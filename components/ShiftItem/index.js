@@ -1,14 +1,16 @@
 import styled from "styled-components";
 import { Button } from "../EditShift";
 
-const Container = styled.div`
+const ContentContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 10px;
 `;
 
 export const EditButton = styled(Button)`
   position: relative;
+
   right: 30px;
   background-color: #2596be;
   color: #ffffff;
@@ -19,24 +21,46 @@ export const EditButton = styled(Button)`
 `;
 
 const StyledShiftItem = styled.div`
-  position: relative;
-  left: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: ${(props) => props.color};
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+`;
+const TitleContainer = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 
-export default function ShiftItem({
-  title,
-  time,
+const StyledTitle = styled.h4`
+  margin: 0;
+`;
 
-  onEdit,
-}) {
+const StyledTime = styled.p`
+  margin: 0;
+`;
+const ColorButton = styled(Button)`
+  color: black;
+  padding: 5px 10px;
+  background-color: ${(props) => props.selectedColor};
+  width: 40px;
+  height: 40px;
+`;
+
+export default function ShiftItem({ title, time, onEdit, selectedColor }) {
   return (
-    <Container>
+    <ContentContainer>
       <StyledShiftItem>
-        <h3>{title}</h3>
-        <p>{time}</p>
+        <ColorButton selectedColor={selectedColor}></ColorButton>
+        <TitleContainer>
+          <StyledTitle>{title}</StyledTitle>
+          <StyledTime>{time}</StyledTime>
+        </TitleContainer>
       </StyledShiftItem>
 
       <EditButton onClick={onEdit}>Edit</EditButton>
-    </Container>
+    </ContentContainer>
   );
 }
