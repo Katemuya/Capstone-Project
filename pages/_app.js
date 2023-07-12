@@ -31,6 +31,7 @@ export default function App({ Component, pageProps }) {
     <>
       <GlobalStyle />
       <Head>
+        <link rel="shortcut icon" href="/favicon.png" />
         <title>Capstone Project</title>
       </Head>
       <Component
