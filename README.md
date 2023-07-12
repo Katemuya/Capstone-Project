@@ -1,4 +1,4 @@
-#Capdtone Project: ShiftPro
+#Capstone Project: ShiftPro
 
 Introducing ShiftPro.The Ultimate Calendar App for effortless repeated events management. ShiftPro offers a seamless experience by providing a quick and efficient way to input your recurring events. With just a few taps, you can set up your monthly shifts, saving you valuable time and effort.
 ![Screenshots](/public/images/ShiftPro.pageViews.png)
